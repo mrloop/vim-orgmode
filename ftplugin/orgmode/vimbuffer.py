@@ -54,6 +54,10 @@ class VimBuffer(Document):
 
 			if not _buffer:
 				raise BufferNotFound(u'Unable to locate buffer number #%d' % self._bufnr)
+			"""
+			load buffer
+			"""
+			vim.eval(u_encode(u'bufload(%d)' % self._bufnr))
 			self._content = VimBufferContent(_buffer)
 
 		self.update_changedtick()
